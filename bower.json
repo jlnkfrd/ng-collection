@@ -1,0 +1,25 @@
+{
+  "name": "ng-collection",
+  "version": "0.0.0",
+  "description": "An Angular collection model to manipulate large datasets.",
+  "main": "src/ng-collection.js",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "collection",
+    "model",
+    "group",
+    "sort"
+  ],
+  "authors": [
+    "Jay Lankford"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
