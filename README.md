@@ -66,7 +66,7 @@ angular.module('example', ['ng-collection'])
     // Pull item(s) from collection that match a value or list of values for 
     // a given property; this will modify the original collection
     var jack = collection.pullByVal('name', 'Jack'); // returns object or null
-    var males = collection.pullByVal('sex', 'M'); // returns Collection possibly empty
+    var males = collection.pullByVal('sex', ['M']); // returns Collection possibly empty
     
     // Perform some sort of transformation on each item in the collection
     collection.transform(function(val) {
