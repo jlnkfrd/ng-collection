@@ -1,11 +1,9 @@
-(function() {
-    "use strict";
-
-    /**
-     * Common Collection operations, use this if you have an array
-     * of objects that you want to perform many operations on
-    **/
-    angular.module("ngCollection").factory('Collection', function() {
+/**
+ * Common Collection operations, use this if you have an array
+ * of objects that you want to perform many operations on
+**/
+angular.module("ngCollection", [])
+	.factory('Collection', function() {
 
         // Constructure, expects an array of objects
         function Collection(data_array) {
@@ -213,4 +211,3 @@
 
         return Collection;
     });
-})();
