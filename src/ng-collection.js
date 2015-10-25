@@ -160,26 +160,59 @@ angular.module("ngCollection", [])
             return result;
         }
 
-        // Sort the current collection instance by the given property name
-        // Note: this currently always sorts ascending and is case INsensitive
-		// TODO: sort descending . . . and case sensitive sorting?
+        // Sort the current collection instance ASCENDING by the given property name
+        // Note: this currently always sorts case INsensitive
         Collection.prototype.sortBy = function(sort_property) {
             this.raw_data.sort(function(a,b) {
                 var A = a[sort_property];
                 var B = b[sort_property];
                 
                 // Make strings lowercase (case insensitive)
-                if(isNaN(parseFloat(A)) || !isFinite(A)) {
+                if(A && (isNaN(parseFloat(A)) || !isFinite(A))) {
                     A = A.toLowerCase();
                 }
                 
-                if(isNaN(parseFloat(B)) || !isFinite(B)) {
+                if(B && (isNaN(parseFloat(B)) || !isFinite(B))) {
                     B = B.toLowerCase();
                 }
 
                 if (A < B) {
                     return -1
                 } else if (A > B) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+
+            return this;
+        }
+		
+        // Sort the current collection instance DESCENDING by the given property name
+        // Note: this currently always sorts case INsensitive
+        Collection.prototype.rSortBy = function(sort_property) {
+            this.raw_data.sort(function(a,b) {
+                var A = a[sort_property];
+                var B = b[sort_property];
+                
+                // Make strings lowercase (case insensitive)
+                if(A instanceof Date) {
+                	A = A.getTime();
+                }
+				else if(A && (isNaN(parseFloat(A)) || !isFinite(A))) {
+                    A = A.toLowerCase();
+                }
+                
+				if(B instanceof Date) {
+					B = B.getTime();
+				}
+                else if(B && (isNaN(parseFloat(B)) || !isFinite(B))) {
+                    B = B.toLowerCase();
+                }
+
+                if (A > B) {
+                    return -1
+                } else if (A < B) {
                     return 1;
                 } else {
                     return 0;
