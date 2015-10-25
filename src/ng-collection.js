@@ -67,11 +67,13 @@ angular.module("ngCollection", [])
             var i;
             if (this.empty()) return counts;
             for (i in this.raw_data) {
-                if (exclude_empty_values && this.raw_data[i][group_property] == '') continue;
-                if (!counts.hasOwnProperty(this.raw_data[i][group_property])) {
-                    counts[this.raw_data[i][group_property]] = 0;
+				var key = this.raw_data[i][group_property];
+				if (key === true || key === false) key = key ? 1 : 0;
+                if (exclude_empty_values && key == '') continue;
+                if (!counts.hasOwnProperty(key)) {
+                    counts[key] = 0;
                 }
-                counts[this.raw_data[i][group_property]]++;
+                counts[key]++;
             }
             return counts;
         }
@@ -98,11 +100,14 @@ angular.module("ngCollection", [])
             var i;
             if (this.empty()) return sorted;
             for (i in this.raw_data) {
+				var key = this.raw_data[i][group_property];
+				if (key === true || key === false) key = key ? 1 : 0;
+
                 if (exclude_empty_values && this.raw_data[i][group_property] == '') continue;
-                if (!sorted.hasOwnProperty(this.raw_data[i][group_property])) {
-                    sorted[this.raw_data[i][group_property]] = new Collection();
+                if (!sorted.hasOwnProperty(key)) {
+                    sorted[key] = new Collection();
                 }
-                sorted[this.raw_data[i][group_property]].push(this.raw_data[i]);
+                sorted[key].push(this.raw_data[i]);
             }
             return sorted;
         }
